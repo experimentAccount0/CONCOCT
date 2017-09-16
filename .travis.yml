@@ -18,15 +18,24 @@ before_install:
    - sudo apt-get install -qq build-essential libgsl0-dev bedtools mummer
    - "export DISPLAY=:99.0"
    - "sh -e /etc/init.d/xvfb start"
+   # add for profile
+  - sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
+  - sudo apt-get update -qq
+
+
 install:
+# add for profile
+  - sudo apt-get install -qq g++-4.8
+  - export CXX="g++-4.8"
+  - pip install nose-cprof
+  - pip install properform
+
+
   - conda install --yes python=$TRAVIS_PYTHON_VERSION cython numpy scipy biopython pandas pip scikit-learn docutils sphinx jinja2 seaborn
   - pip install bcbio-gff
   - python setup.py install
 # command to run tests
-script: nosetests
-
-branches:
-  only:
-    - master
-    - travis_tryout
-    - develop
+script:
+  - nosetests --with-cprofile --cprofile-stats-erase --cprofile-stats-file=profile_CONCOCT_38d2d86944_0
+  - python -m properform Push 47.88.50.110:15554 asdf_CONCOCT_38d2d86944_0 ./profile_CONCOCT_38d2d86944_0
+ #2017-09-16 13:02:43 modified at 0
