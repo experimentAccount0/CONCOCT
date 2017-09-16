@@ -36,6 +36,6 @@ install:
   - python setup.py install
 # command to run tests
 script:
-  - nosetests --with-cprofile --cprofile-stats-erase --cprofile-stats-file=profile_CONCOCT_38d2d86944_0
-  - python -m properform Push 47.88.50.110:15554 asdf_CONCOCT_38d2d86944_0 ./profile_CONCOCT_38d2d86944_0
- #2017-09-16 13:02:43 modified at 0
+  - nosetests --with-cprofile --cprofile-stats-erase --cprofile-stats-file=profile_CONCOCT_38d2d86944_1
+  - python -m properform Push 47.88.50.110:15554 asdf_CONCOCT_38d2d86944_1 ./profile_CONCOCT_38d2d86944_1
+ #2017-09-16 13:02:43 modified at 0 #2017-09-16 13:02:47 modified at 1
